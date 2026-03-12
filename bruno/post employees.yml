@@ -1,0 +1,25 @@
+info:
+  name: post employees
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8080/employees
+  body:
+    type: json
+    data: |-
+      {
+          "id": 7,
+          "name": "Tithi Bala",
+          "email": "abcd@gmail.com"
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc3MzMxMTU0OCwiZXhwIjoxNzczMzEzMzQ4fQ.Yfb7MyyW4Q1WL8_W-AGezbzOv6YbKC9jHQfhvu0XvNM
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

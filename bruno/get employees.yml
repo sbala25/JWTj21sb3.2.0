@@ -1,0 +1,17 @@
+info:
+  name: get employees
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:8080/employees
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc3MzMxMTU0OCwiZXhwIjoxNzczMzEzMzQ4fQ.Yfb7MyyW4Q1WL8_W-AGezbzOv6YbKC9jHQfhvu0XvNM
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

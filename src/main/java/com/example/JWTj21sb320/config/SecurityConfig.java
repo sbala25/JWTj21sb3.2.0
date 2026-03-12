@@ -10,6 +10,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -20,18 +21,29 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	@Autowired
-	private JwtFilter jwtFilter;
+	private final JwtFilter jwtFilter;
+	private final CustomAuthenticationEntryPoint authEntryPoint;
+	private final CustomAccessDeniedHandler accessDeniedHandler;
+
+	public SecurityConfig(CustomAuthenticationEntryPoint authEntryPoint, CustomAccessDeniedHandler accessDeniedHandler, JwtFilter jwtFilter) {
+		this.authEntryPoint = authEntryPoint;
+		this.accessDeniedHandler = accessDeniedHandler;
+		this.jwtFilter = jwtFilter;
+	}
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		return http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-				.csrf(customizer -> customizer.disable())
+				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(request -> request.requestMatchers("authenticate").permitAll()
 						.anyRequest().authenticated())
 				.httpBasic(Customizer.withDefaults())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.exceptionHandling(exception -> exception
+						.authenticationEntryPoint(authEntryPoint)   // 401
+						.accessDeniedHandler(accessDeniedHandler)   // 403
+				)
 				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class).build();
 
 	}

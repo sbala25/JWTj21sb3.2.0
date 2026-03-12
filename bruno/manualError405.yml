@@ -1,0 +1,17 @@
+info:
+  name: manualError405
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: http://localhost:8080/manualError
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc3MzMxMTU0OCwiZXhwIjoxNzczMzEzMzQ4fQ.Yfb7MyyW4Q1WL8_W-AGezbzOv6YbKC9jHQfhvu0XvNM
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
