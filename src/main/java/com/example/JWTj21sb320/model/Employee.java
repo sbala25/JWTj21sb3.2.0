@@ -1,8 +1,11 @@
 package com.example.JWTj21sb320.model;
 
+import jakarta.validation.constraints.Email;
+
 public class Employee {
 	private int id;
 	private String name;
+	@Email(message = "Email must be valid")
 	private String email;
 
 	public Employee(int id, String name, String email) {

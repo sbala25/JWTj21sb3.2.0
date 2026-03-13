@@ -1,18 +1,30 @@
 package com.example.JWTj21sb320.model;
 
+import java.time.LocalDateTime;
+
 public class ApiError {
+
 
     private int status;
     private String error;
     private String message;
+    private String path;
+    private LocalDateTime timestamp;
+
+    public ApiError(int status, String error, String message, String path, LocalDateTime timestamp) {
+        this.status = status;
+        this.error = error;
+        this.message = message;
+        this.path = path;
+        this.timestamp = timestamp;
+    }
 
     public ApiError(int status, String error, String message) {
         this.status = status;
         this.error = error;
         this.message = message;
     }
-
-    // getters
+// getters
 
     public int getStatus() {
         return status;
@@ -38,12 +50,30 @@ public class ApiError {
         this.message = message;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
     @Override
     public String toString() {
         return "ApiError{" +
                 "status=" + status +
                 ", error='" + error + '\'' +
                 ", message='" + message + '\'' +
+                ", path='" + path + '\'' +
+                ", timestamp=" + timestamp +
                 '}';
     }
 }

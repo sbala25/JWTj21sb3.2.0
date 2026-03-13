@@ -1,19 +1,15 @@
 info:
-  name: post employees
+  name: employeesbyId
   type: http
-  seq: 3
+  seq: 7
 
 http:
-  method: POST
-  url: http://localhost:8080/employees
-  body:
-    type: json
-    data: |-
-      {
-          "id": 7,
-          "name": "Tithi Bala",
-          "email": "abcd@gmail.com"
-      }
+  method: GET
+  url: http://localhost:8080/employeesbyId?id=saikat
+  params:
+    - name: id
+      value: saikat
+      type: query
   auth:
     type: bearer
     token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc3MzQxMjE5OSwiZXhwIjoxNzczNDEzOTk5fQ.9qUrAGUCDvlE9DkAL3GmJ2cy4sONKmZseaDvWmBJ6gM

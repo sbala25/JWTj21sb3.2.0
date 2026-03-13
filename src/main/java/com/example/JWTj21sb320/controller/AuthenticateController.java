@@ -22,7 +22,7 @@ public class AuthenticateController {
 	private JwtService jwtService;
 
 	@PostMapping("/authenticate")
-	public ResponseEntity<JwtResponse> login(@RequestBody JwtUsers user) {
+	public ResponseEntity<JwtResponse> login(@RequestBody JwtUsers user) throws Exception{
 		Boolean isVarify = service.verify(user);
 		JwtResponse jwtResponse = new JwtResponse();
 
