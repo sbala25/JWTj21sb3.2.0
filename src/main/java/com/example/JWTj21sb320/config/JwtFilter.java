@@ -1,6 +1,7 @@
 package com.example.JWTj21sb320.config;
 
 
+import jakarta.annotation.Nonnull;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,8 +30,16 @@ public class JwtFilter extends OncePerRequestFilter {
 	@Value("${app.jwtUser}")
 	private String jwtUser;
 
+//	@Override
+//	protected boolean shouldNotFilter(HttpServletRequest request) {
+//
+//		String path = request.getServletPath();
+//
+//		return path.startsWith("/employees");
+//	}
+
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+	protected void doFilterInternal(HttpServletRequest request, @Nonnull HttpServletResponse response, @Nonnull FilterChain filterChain)
 			throws ServletException, IOException {
 		String authHeader = request.getHeader("Authorization");
 		String token = null;
