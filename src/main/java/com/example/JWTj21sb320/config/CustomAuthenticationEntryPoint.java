@@ -26,7 +26,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         ApiError error = new ApiError(
                 HttpStatus.UNAUTHORIZED.value(),
                 HttpStatus.UNAUTHORIZED.getReasonPhrase(),
-                ex.getMessage() != null ? ex.getMessage() : "Authentication failed",
+                ex.getMessage() != null ? ex.getMessage() : "You are not authorized to access this resource",
                 request.getRequestURI(),
                 LocalDateTime.now()
         );
