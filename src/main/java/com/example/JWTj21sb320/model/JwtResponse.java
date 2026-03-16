@@ -47,7 +47,10 @@ public class JwtResponse {
 
 	@Override
 	public String toString() {
-		return "JwtResponse [token=" + token + ", token_type=" + token_type + ", error=" + error + "]";
+		return "JwtResponse [token=" + token +
+				", token_type=" + token_type +
+				", error=" + error +
+				"]";
 	}
 
 }

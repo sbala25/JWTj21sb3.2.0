@@ -23,7 +23,10 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     }
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException ex) throws IOException {
+    public void handle(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            AccessDeniedException ex) throws IOException {
         ApiError error = new ApiError(
                 HttpStatus.FORBIDDEN.value(),
                 HttpStatus.FORBIDDEN.getReasonPhrase(),
